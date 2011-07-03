@@ -1,0 +1,34 @@
+<!-- 
+  YQL scraping latest tumblr post title and body
+  
+  Author: Lauren Tsung
+          ltsung@yahoo-inc.com
+  Date:   2 July 2011
+-->
+
+<html>
+  <head><title>tumblr</title>
+  
+  <style type='text/css'>
+    #results{ width: 50%; margin-left: 25%; border: 1px solid gray; padding: 5px; height: 200px; overflow: auto; } 
+  </style>
+  
+  <script type='text/javascript'>
+    function tumblr(o){
+      var output = '';
+      var posts = o.query.results.posts.post;
+      
+      for(var i = 0; i < posts.length; i++) {
+         output += "<h3><a href='" + posts[i]['url-with-slug'] + "'>" + posts[i]['regular-title'] + "</a></h3>" + posts[i]['regular-body'] + "<hr>";
+            
+      }
+      
+      document.getElementById('results').innerHTML = output;  
+    }
+    </script>
+  </head>
+  <body>
+    <div id='results'></div>
+    <script src='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20tumblr.posts%20where%20username%3D"ltsung"&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=tumblr'></script>
+  </body>
+</html>
