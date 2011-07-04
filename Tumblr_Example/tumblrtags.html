@@ -1,5 +1,5 @@
 <!-- 
-  YQL scraping latest tumblr post title and body
+  YQL scraping latest tumblr tags
   
   Author: Lauren Tsung
           ltsung@yahoo-inc.com
@@ -7,7 +7,7 @@
 -->
 
 <html>
-  <head><title>tumblr posts</title>
+  <head><title>tumblr tags</title>
   
   <style type='text/css'>
     #results{ width: 50%; margin-left: 25%; border: 1px solid gray; padding: 5px; height: 200px; overflow: auto; } 
@@ -19,8 +19,7 @@
       var posts = o.query.results.posts.post;
       
       for(var i = 0; i < posts.length; i++) {
-         output += "<h3><a href='" + posts[i]['url-with-slug'] + "'>" + posts[i]['regular-title'] + "</a></h3>" + "<p>" + posts[i]['date'] + "</p>" + posts[i]['regular-body'] + "<hr>";
-            
+         output += "<a href='http://ltsung.tumblr.com/tagged/" + posts[i]['tag'] + "'>#" + posts[i]['tag'] + "</a> "      
       }
       
       document.getElementById('results').innerHTML = output;  
